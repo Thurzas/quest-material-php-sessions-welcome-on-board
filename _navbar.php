@@ -1,5 +1,5 @@
 <nav>
-    <a href="/" aria-label="retour à la page d'accueil">
+    <a href="/" aria-label="back to home page">
         <img class="logo" src="/assets/images/logo.svg" alt="">
     </a>
     <ul>

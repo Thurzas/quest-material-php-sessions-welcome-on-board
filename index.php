@@ -1,3 +1,25 @@
+<?php
+$errors = [];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $contact = array_map('trim', $_POST);
+    if (empty($contact['name'])) {
+        $errors[] = 'Name is required';
+    }
+    if (empty($contact['email'])) {
+        $errors[] = 'Email is required';
+    }
+    if (filter_var($contact['email'], FILTER_VALIDATE_EMAIL) === false) {
+        $errors[] = 'Email is not valid';
+    }
+    if (empty($contact['subject'])) {
+        $errors[] = 'Please choose a subject in the list';
+    }
+    if (empty($errors)) {
+        header('Location: result.php');
+        exit();
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,17 +48,17 @@
                 <article>
                     <img src="/assets/images/responsive.png" alt="Responsive">
                     <h3>Responsive</h3>
-                    <a href="#">Read</a>
+                    <a href="#" class="btn">Read</a>
                 </article>
                 <article>
                     <img src="/assets/images/scalable.png" alt="Scalable">
                     <h3>Scalable</h3>
-                    <a href="#">Read</a>
+                    <a href="#" class="btn">Read</a>
                 </article>
                 <article>
                     <img src="/assets/images/inclusive.png" alt="Inclusive">
                     <h3>Inclusive</h3>
-                    <a href="#">Read</a>
+                    <a href="#" class="btn">Read</a>
                 </article>
             </div>
         </section>
@@ -55,7 +77,44 @@
                 quaerat nemo nam, consequuntur nisi alias in praesentium. Fuga amet esse nam doloremque ut nemo nostrum.
             </p>
         </section>
-        <?php //@todo Add a contact form  ?>
+        <section class="container">
+            <h2 id="contact">Get in touch</h2>
+            <p>
+                Leave us a message and we will get back to you as soon as possible.
+            </p>
+            <p>
+                <small>Fields marked with red wildcards * are required.</small>
+            </p>
+
+            <form method="post">
+                <?php if (!empty($errors)) : ?>
+                    <h3>Please fix errors below</h3>
+                    <ul>
+                        <?php foreach ($errors as $error) : ?>
+                            <li><?= $error ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" value="<?= $contact['name'] ?? '' ?>" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" value="<?= $contact['email'] ?? '' ?>" required>
+
+                <label for="subject">Subject</label>
+                <select name="subject" id="subject" required>
+                    <option value="">-</option>
+                    <option value="appointment">Make an appointment</option>
+                    <option value="quote">Request a quote</option>
+                    <option value="newsletter">Subscribe to newsletter</option>
+                </select>
+
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5"><?= $contact['message'] ?? '' ?></textarea>
+
+                <button type="submit">Send</button>
+            </form>
     </main>
     <?php include '_footer.php' ?>
 </body>

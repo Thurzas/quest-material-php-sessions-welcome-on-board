@@ -9,6 +9,7 @@ header {
 }
 
 header h1 {
+    color: inherit;
     max-width: 8ch;
 }
 
