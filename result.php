@@ -1,3 +1,4 @@
+<?php //@todo start PHP session ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,6 +15,7 @@
 <body>
     <?php include '_navbar.php' ?>
     <main class="container">
+        <?php //@todo display contact form data ?>
         <h1>Thank you for your message!</h1>
         <p>
             Your message is being processed.

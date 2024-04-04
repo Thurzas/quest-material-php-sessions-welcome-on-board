@@ -19,8 +19,5 @@ If you need to add more, please maintain the naming convention of **imported fil
 ```
 With that structure, the PHP files (or any HTML files as well) only need to link to the main `style.css` which imports all the others CSS. This is currently the case.
 
-## Add the form
-The `index.php` has a comment indicating where the form can be added.
-
-## Create other pages.
-If additional pages need to be added, the common navbar and footer are ready to be included in those pages. 
+## Goal
+On the `result.php` page, display custom message with the user inputs from the contact form and using PHP session.

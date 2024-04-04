@@ -1,4 +1,5 @@
 <?php
+//@todo start PHP session
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $contact = array_map('trim', $_POST);
@@ -15,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = 'Please choose a subject in the list';
     }
     if (empty($errors)) {
+        //@todo save contact form data to session
         header('Location: result.php');
         exit();
     }
