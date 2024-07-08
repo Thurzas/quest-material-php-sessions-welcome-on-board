@@ -23,7 +23,15 @@ article {
 
 article h3 {
     margin-top: auto;
-    color: initial;
+}
+
+article a {
+    padding: .25rem 1.75rem;
+    background-color: var(--primary-color);
+    color: var(--primary-color-inverse);
+    border-radius: 1rem;
+    text-decoration: none;
+    text-transform: uppercase;
 }
 
 article img {
